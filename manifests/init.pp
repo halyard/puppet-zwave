@@ -33,6 +33,7 @@ class zwave (
     proxy_target       => "http://${container_ip}:8091",
     tls_challengealias => $tls_challengealias,
     tls_account        => $tls_account,
+    csp                => "default-src 'self' http: https: ws: wss: data: blob: 'unsafe-inline' 'unsafe-eval'; frame-ancestors 'self';",
     port               => $port,
   }
 }
