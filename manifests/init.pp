@@ -9,6 +9,9 @@
 class zwave (
   String $datadir,
   String $dongle,
+  String $hostname,
+  String $tls_account,
+  Optional[String] $tls_challengealias = undef,
   String $container_ip = '172.17.0.2',
 ) {
   file { "${datadir}/store":
