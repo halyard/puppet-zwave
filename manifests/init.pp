@@ -6,6 +6,7 @@
 # @param tls_account is the account details for requesting the TLS cert
 # @param tls_challengealias is the domain to use for TLS cert validation
 # @param container_ip sets the IP address for the docker container
+# @param port sets the port to listen on
 class zwave (
   String $datadir,
   String $dongle,
@@ -13,6 +14,7 @@ class zwave (
   String $tls_account,
   Optional[String] $tls_challengealias = undef,
   String $container_ip = '172.17.0.2',
+  Integer $port = 8443,
 ) {
   file { "${datadir}/store":
     ensure => directory,
@@ -31,5 +33,6 @@ class zwave (
     proxy_target       => "http://${container_ip}:8091",
     tls_challengealias => $tls_challengealias,
     tls_account        => $tls_account,
+    port               => $port,
   }
 }
