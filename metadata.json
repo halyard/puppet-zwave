@@ -1,0 +1,16 @@
+{
+  "name": "halyard-zwave",
+  "version": "0.0.1",
+  "author": "Les Aker",
+  "license": "MIT",
+  "summary": "Configure zwave instance",
+  "source": "https://github.com/halyard/puppet-zwave",
+  "project_page": "https://github.com/halyard/puppet-zwave",
+  "issues_url": "https://github.com/halyard/puppet-zwave/issues",
+  "dependencies": [
+
+  ],
+  "operatingsystem_support": [
+
+  ]
+}
