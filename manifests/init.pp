@@ -26,7 +26,7 @@ class zwave (
   Optional[Hash[String, String]] $backup_environment = undef,
   Optional[String] $backup_rclone = undef,
 ) {
-  file { "${datadir}/store":
+  file { [$datadir, "${datadir}/store"]:
     ensure => directory,
   }
 
