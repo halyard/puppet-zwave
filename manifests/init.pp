@@ -3,8 +3,9 @@
 # @param datadir sets where the data is persisted
 # @param dongle sets the device path for the USB dongle
 # @param hostname is the hostname for log submission
-# @param tls_account is the account details for requesting the TLS cert
-# @param tls_challengealias is the domain to use for TLS cert validation
+# @param aws_access_key_id sets the AWS key to use for Route53 challenge
+# @param aws_secret_access_key sets the AWS secret key to use for the Route53 challenge
+# @param email sets the contact address for the certificate
 # @param container_ip sets the IP address for the docker container
 # @param port sets the port to listen on
 # @param backup_target sets the target repo for backups
@@ -16,8 +17,9 @@ class zwave (
   String $datadir,
   String $dongle,
   String $hostname,
-  String $tls_account,
-  Optional[String] $tls_challengealias = undef,
+  String $aws_access_key_id,
+  String $aws_secret_access_key,
+  String $email,
   String $container_ip = '172.17.0.2',
   Integer $port = 8443,
   Optional[String] $backup_target = undef,
@@ -40,11 +42,12 @@ class zwave (
   }
 
   nginx::site { $hostname:
-    proxy_target       => "http://${container_ip}:8091",
-    tls_challengealias => $tls_challengealias,
-    tls_account        => $tls_account,
-    csp                => "default-src 'self' http: https: ws: wss: data: blob: 'unsafe-inline' 'unsafe-eval'; frame-ancestors 'self';",
-    port               => $port,
+    proxy_target          => "http://${container_ip}:8091",
+    aws_access_key_id     => $aws_access_key_id,
+    aws_secret_access_key => $aws_secret_access_key,
+    email                 => $email,
+    csp                   => "default-src 'self' http: https: ws: wss: data: blob: 'unsafe-inline' 'unsafe-eval'; frame-ancestors 'self';",
+    port                  => $port,
   }
 
   if $backup_target != '' {
