@@ -1,4 +1,4 @@
-# @summary Configure ZWavejs2Mqtt
+# @summary Configure ZWave-js-ui
 #
 # @param datadir sets where the data is persisted
 # @param dongle sets the device path for the USB dongle
@@ -33,7 +33,7 @@ class zwave (
   }
 
   -> docker::container { 'zwave':
-    image => 'zwavejs/zwavejs2mqtt:latest',
+    image => 'zwavejs/zwave-js-ui:latest',
     args  => [
       "--device=${dongle}:/dev/zwave",
       "-v ${datadir}/store:/usr/src/app/store",
