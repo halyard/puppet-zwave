@@ -33,7 +33,7 @@ class zwave (
   }
 
   -> docker::container { 'zwave':
-    image => 'zwavejs/zwave-js-ui:latest',
+    image => 'ghcr.io/zwave-js/zwave-js-ui:latest',
     args  => [
       "--device=${dongle}:/dev/zwave",
       "-v ${datadir}/store:/usr/src/app/store",
